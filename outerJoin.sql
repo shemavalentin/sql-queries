@@ -63,3 +63,38 @@ SELECT a.emp_no, b.salary, COALESCE(c.title, 'No title change') FROM employees A
 INNER JOIN salaries AS b ON b.emp_no = a.emp_no
 LEFT JOIN titles AS c ON c.emp_no = a. emp_no 
 AND (c.from_date = b.from_date OR c.from_date = b.from_date + INTERVAL '2 days') ORDER BY a.emp_no;
+
+
+-- Normally the title change occurs when someone joines a company or get a promotion
+-- Now we need to know employees who got the raise and their title changed and those 
+-- who have got the raise and did not get the title change
+
+SELECT a.emp_no, CONCAT(a.first_name, a.last_name) as "name", b.salary, 
+COALESCE(c.title, 'No title change'),
+COALESCE(c.from_date::text, '-') AS " title taken on"
+FROM employees AS a INNER JOIN salaries AS b ON a.emp_no = b.emp_no
+LEFT JOIN titles AS c ON c.emp_no = a.emp_no AND (
+    c.from_date = (b.from_date + INTERVAL '2days') OR
+    c.from_date = b.from_date
+) ORDER BY a.emp_no;
+
+
+-- RIGHT INNER JOINS QUERIES
+/*
+RIGHT inner joins add the data that don't have a match from the table B
+to mean on the right side of the joint.
+
+It has the same synthax as the LEFT INNER JOIN but it is the opposite of left join
+
+*/
+
+--> SYNTHAX
+
+SELECT * FROM < table A> AS a RIGHT [OUTER] JOIN <table B> AS b ON a.id = b.id
+
+-- Any value that does not match is made to be null
+
+-- LEFT INNER JOIN and RIGHT INNER JOIN are the inverse of each other, but 
+-- one cts against the table that is being joined and the other acts against the table that is joining.
+
+-- Any value that does not match is made to be null
