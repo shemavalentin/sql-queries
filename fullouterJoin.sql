@@ -22,4 +22,4 @@ INSERT INTO "cartesianB" VALUES (30);
 
 SELECT * FROM "cartesianA" AS a FULL JOIN "cartesianB" AS b ON a.id = b.id;
 -- the command will return the data whether it is matching and data which don't 
--- match from both of the tables
+-- match from both of the tables 

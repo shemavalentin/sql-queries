@@ -77,4 +77,29 @@ Joining the data also works as filter, we can join the data but structure the wa
 Note:  inner joins can become more complicated as you add more tables that you want to combine.
 
 But we need to always ise inner join as a best practice.  the ON is where you start to link data together
+*/
 
+-- THIS IS THE MOST USED COMMAND TO JOIN TABLES
+
+-- INNER JOIN SIMPLIFICATION 
+
+SELECT e.emp_no, e.first_name, de.dept_no FROM employees AS e INNER JOIN dept_emp AS de ON de.emp_No = e.emp_no
+
+-- By using the USING Key word, the query could be simplified and pass it the column that appears to both tables
+-- this means ( the primary key and the foreign key)
+
+SELECT e.emp_no, e.first_name, de.dept_no FROM employees AS e INNER JOIN dept_emp AS de USING (emp_no)
+
+-- When I need to see department name for example 
+
+SELECT e.emp_no, e.first_name, d.dept_name FROM employees AS e 
+INNER JOIN dept_emp AS de USING (emp_no)
+INNER JOIN departments AS d USING(dept_no)
+
+/*
+It is recommended to use the ON key word most of the time becouse the USING KEYWORD 
+can be confusing when you join many tables.
+
+the USING Key word can be used when you need to join two or few tables to avoid complexity
+
+*/
