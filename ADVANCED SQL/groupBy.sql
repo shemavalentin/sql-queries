@@ -46,3 +46,43 @@ SELECT dept_no, COUNT(emp_no) FROM dept_emp GROUP BY dept_no;
 -- We use group by almost exclusively woth aggregate functions
 
 -- When we GROUP BY we apply the function per group, not on the entire data set
+
+
+-- THINGS TO REMEMBER 
+
+--> Every column not in the group-by clause must apply a function.
+
+-- WHY? This query??
+
+--> To reduce all records found for the matching ' Group' to a single record.
+
+         -- HOW DOES IT WORK?
+        
+--  GROUP BY UTILIZES A SPLIT-APPLY-COMBINE STRATEGY
+
+--> we always apply aggregate functions( min, max, count,...) which produce a single output on 
+ -- a set and then combine the groups with the singular output
+
+ -- we split by the groups, we apply an aggregate function to the columns we want they generate a summed single output
+ -- , then combine to generate a singular out put.
+
+
+/* SUMMARY*/
+
+-- SPLIT PHASE:  devide into groups with values 
+-- APPLY PHASE:  apply aggregate function against ungrouped columns the ones that we specify
+-- COMBINE PHASE: combines groups with a single value into single value
+              -- Now what does this mean?  it means,the sql engine is going to say hey, I haave
+              -- this group B I have this group C and I have all of these things I applied an 
+              -- aggregate function to that also outputted a single value and now I'm going to
+              -- visualize group value, Group value, Group value 
+
+
+/* ORDER OF OPERATIONS*/
+
+-- this is how sql does things
+
+--  FROM -> WHERE -> GROUP BY -> SELECT -> ORDER BY
+
+        
+
