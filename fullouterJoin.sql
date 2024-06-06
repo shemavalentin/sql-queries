@@ -1,5 +1,5 @@
 
--- THIS RETURN RESULSTS FROM BOTH WHERER THEY MATCH OR NOT
+-- THIS RETURN RESULSTS FROM BOTH WHETHERE THEY MATCH OR NOT
 
 -- What the fullouter join does is to return all the results from 
 -- both sets wheter they match or not
